@@ -93,4 +93,33 @@ public class EmployeeController {
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
     }
+
+    /**
+     * 员工禁用与启用
+     */
+    @ApiOperation("员工禁用与启用")
+    @PostMapping("/status/{status}")
+    public Result changeStatus(@PathVariable("status") Integer status,
+                               Long id) {
+        employeeService.startOrStop(status, id);
+        return Result.success();
+    }
+
+    /**
+     * 查询员工
+     */
+    @GetMapping("/{id}")
+    public Result<Employee> getById(@PathVariable("id") Long id) {
+        Employee employee = employeeService.getById(id);
+        return  Result.success(employee);
+    }
+
+    /**
+     * 修改员工
+     */
+    @PostMapping()
+    public Result update(@RequestBody EmployeeDTO employeeDTO) {
+        employeeService.update(employeeDTO);
+        return Result.success();
+    }
 }
