@@ -3,6 +3,8 @@ package com.sky;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
@@ -10,7 +12,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Slf4j
 public class SkyApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SkyApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(SkyApplication.class, args);
+        // 获取当前项目端口号
+        Environment env = context.getBean(Environment.class);
         log.info("外卖启动QAQ");
+        log.info("swagger地址：http://localhost:{}/doc.html", env.getProperty("server.port"));
     }
 }
