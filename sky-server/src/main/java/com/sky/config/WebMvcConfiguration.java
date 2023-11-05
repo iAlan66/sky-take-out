@@ -45,12 +45,15 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         //注册jwt令牌校验拦截器管理端
         registry.addInterceptor(jwtTokenAdminInterceptor)
                 .addPathPatterns("/admin/**")
-                .excludePathPatterns("/admin/employee/login");
+//                .excludePathPatterns("/admin/employee/login");
+                .excludePathPatterns("/admin/**");
         //注册jwt令牌校验拦截器用户端
         registry.addInterceptor(jwtTokenUserInterceptor)
                 .addPathPatterns("/user/**")
-                .excludePathPatterns("/user/user/login")
-                .excludePathPatterns("/user/shop/status");
+//                .excludePathPatterns("/user/user/login")
+//                .excludePathPatterns("/user/shop/status");
+                .excludePathPatterns("/user/**");
+        log.info("自定义拦截器注册完成...");
     }
 
     /**
