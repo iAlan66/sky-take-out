@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.Map;
+
 /**
  * @author Alan
  * @version 1.0
@@ -16,4 +18,6 @@ public interface UserMapper {
     User getByOpenid(String openid);
 
     void insert(User user);
+
+    Integer countByMap(Map map);
 }

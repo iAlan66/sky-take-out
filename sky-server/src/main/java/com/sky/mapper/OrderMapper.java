@@ -13,4 +13,6 @@ import java.util.Map;
 @Mapper
 public interface OrderMapper {
     Double sumByMap(Map map);
+
+    Integer countByMap(Map map);
 }
