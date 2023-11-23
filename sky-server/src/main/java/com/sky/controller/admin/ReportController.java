@@ -8,12 +8,14 @@ import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 
 /**
@@ -59,5 +61,11 @@ public class ReportController {
         log.info("top10：{}-{}", begin, end);
         SalesTop10ReportVO reportServiceSalesTop10 = reportService.getSalesTop10(begin, end);
         return Result.success(reportServiceSalesTop10);
+    }
+
+    @GetMapping("/export")
+    @ApiOperation("导出30运营数据报表")
+    public void export(HttpServletResponse res) {
+        reportService.exportBussinessDate(res);
     }
 }
